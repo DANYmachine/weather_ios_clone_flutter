@@ -27,6 +27,7 @@ class City{
   var clouds;
   var country;
 
+
   var sunrise, sunset, dayLength;
 
   var list = [];
@@ -82,7 +83,7 @@ class City{
     final str = Uri.parse('$proService/data/2.5/forecast/hourly?q=$city&units=metric&appid=d287b61c753eb143ff4104dd40b73e90');
     http.Response response = await http.get(str);
     var res = jsonDecode(response.body);
-    int ?seconds;
+    int ?seconds;//asdqweasdasd
     var date;
 
     this.sunrise = DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(res['city']['sunrise'] * 1000));

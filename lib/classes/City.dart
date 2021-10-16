@@ -7,7 +7,6 @@ import 'Weather.dart';
 import 'package:intl/intl.dart';
 
 class City{
-
   final apiKey = 'd287b61c753eb143ff4104dd40b73e90';
   final weatherService = 'http://api.openweathermap.org';
   final proService = 'https://pro.openweathermap.org';
@@ -41,6 +40,8 @@ class City{
   City(String city){
     this.city = city;
     getWeather();
+    alternative();
+    dailyWeather();
   }
 
   Future dailyWeather() async{
@@ -127,7 +128,5 @@ class City{
     this.country = results['sys']['country'];
 
     iconUri = "http://openweathermap.org/img/wn/$iconCode@2x.png";
-    alternative();
-    dailyWeather();
   }
 }

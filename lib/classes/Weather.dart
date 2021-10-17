@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class Weather{
   var icon;
   var temp;

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:weather_ios_clone/HomePage/homePage.dart';
 import 'package:weather_ios_clone/classes/Weather.dart';
-import '../main.dart';
 import 'Weather.dart';
 import 'package:intl/intl.dart';
 

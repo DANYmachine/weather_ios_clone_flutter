@@ -1,11 +1,48 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:weather_ios_clone/DetailPage/detailPage.dart';
 import 'package:weather_ios_clone/classes/City.dart';
 
-import '../main.dart';
-
 var _newCity;
+var jCities = [];
+var cities = [
+  new City('Minsk'),
+  new City('Pinsk'),
+  new City('Vitebsk'),
+  new City('Brest'),
+  new City('Homel'),
+  new City('Grodno')
+];
+
+bool theme = true;
+
+Color? backgroundColor;
+Color? buttonColor;
+Color? fontColor;
+
+Future<void> readCitiesJSON() async {
+  final String response = await rootBundle.loadString('lib/city.list.json');
+  final data = await json.decode(response);
+  for (var ct in data) {
+    jCities.add(ct['name']);
+  }
+}
+
+void checkTheme() {
+  theme
+      ? backgroundColor = Color(0xFF4A4A58)
+      : backgroundColor = Color(0xFFD5D5E0);
+  theme
+      ? fontColor = Color(0xFFFFFFFF)
+      : fontColor = Color(0xFF0B3E58);
+  theme
+      ? buttonColor = Color(0xFFD5D5E0)
+      : buttonColor = Color(0xFF4A4A58);
+  theme = !theme;
+}
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_ios_clone/HomePage/homePage.dart';
 
+import '../main.dart';
+
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
 

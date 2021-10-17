@@ -2,10 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'HomePage/homePage.dart';
+import 'classes/City.dart';
 
 void main() {
   runApp(MyApp());
 }
+
+var cities = [
+  new City('Minsk'),
+  new City('Pinsk'),
+  new City('Vitebsk'),
+  new City('Brest'),
+  new City('Homel'),
+  new City('Grodno')
+];
 
 class MyApp extends StatelessWidget {
   @override

@@ -52,6 +52,7 @@ class _DetailPageState extends State<DetailPage> {
                       onDismissed: (direction) {
                         setState(() {
                           cities.removeAt(index);
+                          Update();
                         });
                       },
                     );

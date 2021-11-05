@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
         city.getWeather();
       }
     });
-    readCitiesJSON();
+    //readCitiesJSON();
   }
 
   @override
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ct.dailyWeather();
                                 ct.GetWidget();
                               }
-                              readCitiesJSON();
+                              //readCitiesJSON();
                             });
                           }
                         ),
@@ -145,16 +145,16 @@ class _MyHomePageState extends State<MyHomePage> {
                         itemCount: cities.length,
                         itemBuilder: (context, index) => Container(
                           child: cities[index].widget == null
-                              ? Center(
-                                  child: Text(
-                                    'Loading...',
-                                    style: TextStyle(
-                                      color: fontColor,
-                                      fontSize: 45
-                                    ),
+                            ? Center(
+                                child: Text(
+                                  'Loading...',
+                                  style: TextStyle(
+                                    color: fontColor,
+                                    fontSize: 45
                                   ),
-                                )
-                              : cities[index].widget
+                                ),
+                            )
+                            : cities[index].widget
                         )
                       ),
                     ),

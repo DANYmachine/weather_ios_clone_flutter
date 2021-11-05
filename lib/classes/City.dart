@@ -160,10 +160,10 @@ class City{
                             child: Column(
                               children: [
                                 Text(
-                                    'Sunrise: ${this.sunrise!}',
-                                    style: TextStyle(
-                                        color: fontColor
-                                    )
+                                  'Sunrise: ${this.sunrise!}',
+                                  style: TextStyle(
+                                    color: fontColor
+                                  )
                                 ),
                                 Text(
                                     'Sunset: ${this.sunset!}',
@@ -481,9 +481,11 @@ class City{
       date = DateTime.fromMillisecondsSinceEpoch(seconds!);
       list.add(
           new Weather(
-            'http://openweathermap.org/img/wn/${ct['weather'][0]['icon']}@2x.png',
-            ct['main']['temp']?.round()??0,
-            DateFormat.Hm().format(date).toString() == '00:00' ? DateFormat.MMMd().format(date) : DateFormat.Hm().format(date)
+              'http://openweathermap.org/img/wn/${ct['weather'][0]['icon']}@2x.png',
+              ct['main']['temp']?.round()??0,
+              DateFormat.Hm().format(date).toString() == '00:00'
+                  ? DateFormat.MMMd().format(date)
+                  : DateFormat.Hm().format(date)
           )
       );
     }

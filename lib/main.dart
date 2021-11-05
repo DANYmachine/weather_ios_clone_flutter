@@ -17,6 +17,14 @@ var cities = [
   new City('Grodno')
 ];
 
+void Update(){
+  for(var ct in cities){
+    cities = cities;
+    ct.getWeather();
+  }
+}
+
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

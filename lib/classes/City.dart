@@ -2,19 +2,11 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:weather_ios_clone/HomePage/homePage.dart';
+import 'package:weather_ios_clone/classes/7DaysWeather.dart';
 import 'package:weather_ios_clone/classes/Weather.dart';
-import 'City/1.CityWidget.dart';
 import 'Weather.dart';
 import 'package:intl/intl.dart';
 
-
-
-var ct;
-
-City SendCity(){
-  return ct;
-}
 class City{
   final apiKey = 'd287b61c753eb143ff4104dd40b73e90';
   final weatherService = 'http://api.openweathermap.org';
@@ -34,13 +26,11 @@ class City{
   var pressure;
   var clouds;
   var country;
-
   var sunrise, sunset, dayLength;
 
   var list = [];
   var dailyList = [];
   List<Widget> tileList = [];
-  Widget ?widget;
 
   var longitude;
   var latitude;
@@ -48,7 +38,6 @@ class City{
 
   City(String city){
     this.city = city;
-    ct = this;
     getWeather();
     alternative();
     dailyWeather();
@@ -73,19 +62,13 @@ class City{
           DateFormat.MMMd().format(date)
         )
       );
+
       tileList.add(
-        new Container(
-          padding: EdgeInsets.all(5),
-          child: Material(
-            color: Colors.lightBlueAccent.withOpacity(0.4),
-            borderRadius: BorderRadius.circular(15),
-            child: ListTile(
-              leading: Image.network('http://openweathermap.org/img/wn/${temp[i]['weather'][0]['icon']}@2x.png',),
-              trailing: Text('${temp[i]['temp']['day']?.round()??0} \u00B0C', style: TextStyle(color: fontColor),),
-              title: Text('${DateFormat.MMMd().format(date)}', style: TextStyle(color: fontColor),),
-            ),
-          ),
-        )
+        new WeeklyWeather(
+          '${temp[i]['weather'][0]['icon']}',
+          (temp[i]['temp']['day']?.round()??0).toDouble(),
+          DateFormat.MMMd().format(date)
+        ).widget
       );
     }
   }
@@ -106,13 +89,13 @@ class City{
       seconds = ct['dt'] * 1000;
       date = DateTime.fromMillisecondsSinceEpoch(seconds!);
       list.add(
-          new Weather(
-              'http://openweathermap.org/img/wn/${ct['weather'][0]['icon']}@2x.png',
-              ct['main']['temp']?.round()??0,
-              DateFormat.Hm().format(date).toString() == '00:00'
-                  ? DateFormat.MMMd().format(date)
-                  : DateFormat.Hm().format(date)
-          )
+        new Weather(
+          'http://openweathermap.org/img/wn/${ct['weather'][0]['icon']}@2x.png',
+          ct['main']['temp']?.round()??0,
+          DateFormat.Hm().format(date).toString() == '00:00'
+            ? DateFormat.MMMd().format(date)
+            : DateFormat.Hm().format(date)
+        )
       );
     }
   }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:weather_ios_clone/DetailPage/detailPage.dart';
 import 'package:weather_ios_clone/classes/City.dart';
+import 'package:weather_ios_clone/classes/City/1.CityWidget.dart';
 import '../main.dart';
 
 var _newCity;
@@ -125,7 +126,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ct.getWeather();
                                 ct.alternative();
                                 ct.dailyWeather();
-                                ct.GetWidget();
                               }
                               //readCitiesJSON();
                             });
@@ -144,17 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: PageView.builder(
                         itemCount: cities.length,
                         itemBuilder: (context, index) => Container(
-                          child: cities[index].widget == null
-                            ? Center(
-                                child: Text(
-                                  'Loading...',
-                                  style: TextStyle(
-                                    color: fontColor,
-                                    fontSize: 45
-                                  ),
-                                ),
-                            )
-                            : cities[index].widget
+                          child: GetCityWidget(city: cities[index])
                         )
                       ),
                     ),

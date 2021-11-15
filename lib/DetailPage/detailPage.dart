@@ -44,8 +44,8 @@ class _DetailPageState extends State<DetailPage> {
                           child: ListTile(
                             title: Center(
                               child: Text('${cities[index].city}')),
-                            leading: Image.network('${cities[index].iconUri}'),
-                            trailing: Text('${cities[index].curTemp} \u00b0C'),
+                              leading: Image.network('${cities[index].iconUri}'),
+                              trailing: Text('${cities[index].curTemp} \u00b0C'),
                           ),
                         ),
                       ),

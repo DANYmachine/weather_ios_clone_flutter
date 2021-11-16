@@ -15,20 +15,20 @@ class _RefreshButtonState extends State<RefreshButton> {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
-        child: Icon(
-          CupertinoIcons.refresh,
-          color: Colors.white,
-        ),
-        onPressed: () {
-          setState(() {
-            for (City ct in cities) {
-              ct.getWeather();
-              ct.alternative();
-              ct.dailyWeather();
-            }
-            //readCitiesJSON();
-          });
-        }
+      child: Icon(
+        CupertinoIcons.refresh,
+        color: Colors.white,
+      ),
+      onPressed: () {
+        setState(() {
+          for (City ct in cities) {
+            ct.getWeather();
+            ct.alternative();
+            ct.dailyWeather();
+          }
+          //readCitiesJSON();
+        });
+      },
     );
   }
 }

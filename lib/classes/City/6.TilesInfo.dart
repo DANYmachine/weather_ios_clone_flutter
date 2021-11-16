@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_ios_clone/HomePage/homePage.dart';
+import 'package:weather_ios_clone/HomePage/HomePage.dart';
 
 import '../City.dart';
 
 class InfoTilesWidget extends StatefulWidget {
-  final City? city;
-  const InfoTilesWidget({Key? key, this.city}) : super(key: key);
+  final City city;
+  const InfoTilesWidget({
+    Key? key,
+    required this.city,
+  }) : super(key: key);
 
   @override
   _InfoTilesWidgetState createState() => _InfoTilesWidgetState();
@@ -24,45 +27,45 @@ class _InfoTilesWidgetState extends State<InfoTilesWidget> {
             child: Column(
               children: [
                 Container(
-                    width: 150,
-                    height: 150,
-                    child: Material(
-                      color: Colors.lightBlueAccent.withOpacity(0.4),
-                      borderRadius: BorderRadius.circular(15),
-                      child: Stack(
-                        children: [
-                          Container(
-                            alignment: Alignment.bottomCenter,
-                            padding: EdgeInsets.only(bottom: 15),
-                            child: Text(
-                              'Wind speed ${widget.city!.windVelocity!} m/s',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  color: fontColor
-                              ),
+                  width: 150,
+                  height: 150,
+                  child: Material(
+                    color: Colors.lightBlueAccent.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(15),
+                    child: Stack(
+                      children: [
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          padding: EdgeInsets.only(bottom: 15),
+                          child: Text(
+                            'Wind speed ${widget.city.windVelocity!} m/s',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: fontColor,
                             ),
                           ),
-                          Center(
-                              child: Image(
-                                image: AssetImage(
-                                    'lib/assets/compass.png'
-                                ),
-                                color: fontColor,
-                              )
+                        ),
+                        Center(
+                          child: Image(
+                            image: AssetImage('lib/assets/compass.png'),
+                            color: fontColor,
                           ),
-                          Center(
-                            child: new RotationTransition(
-                              turns: new AlwaysStoppedAnimation((widget.city!.windDirection! + 180) / 360),
-                              child: new Icon(
-                                CupertinoIcons.arrow_up,
-                                size: 50,
-                                color: fontColor,
-                              ),
+                        ),
+                        Center(
+                          child: new RotationTransition(
+                            turns: new AlwaysStoppedAnimation(
+                              (widget.city.windDirection! + 180) / 360,
+                            ),
+                            child: new Icon(
+                              CupertinoIcons.arrow_up,
+                              size: 50,
+                              color: fontColor,
                             ),
                           ),
-                        ],
-                      ),
-                    )
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 10,
@@ -72,8 +75,7 @@ class _InfoTilesWidgetState extends State<InfoTilesWidget> {
                   height: 150,
                   child: Material(
                     color: Colors.lightBlueAccent.withOpacity(0.4),
-                    borderRadius:
-                    BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(15),
                     child: Center(
                       child: Column(
                         children: [
@@ -88,8 +90,8 @@ class _InfoTilesWidgetState extends State<InfoTilesWidget> {
                           Text(
                             'Humidity ${widget.city!.humidity!} %',
                             style: TextStyle(
-                                fontSize: 15,
-                                color: fontColor
+                              fontSize: 15,
+                              color: fontColor,
                             ),
                           )
                         ],
@@ -119,10 +121,10 @@ class _InfoTilesWidgetState extends State<InfoTilesWidget> {
                         Text(
                           '${widget.city!.clouds!} %',
                           style: TextStyle(
-                              color: fontColor,
-                              fontSize: 15
+                            color: fontColor,
+                            fontSize: 15,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -138,19 +140,18 @@ class _InfoTilesWidgetState extends State<InfoTilesWidget> {
                   height: 150,
                   child: Material(
                     color: Colors.lightBlueAccent.withOpacity(0.4),
-                    borderRadius:BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(15),
                     child: Center(
                       child: Column(
                         children: [
-                          Image.network(
-                              '${widget.city!.iconUri!}'),
+                          Image.network('${widget.city.iconUri!}'),
                           Text(
-                            '${widget.city!.description!}',
+                            '${widget.city.description!}',
                             style: TextStyle(
-                                color: fontColor,
-                                fontSize: 15
+                              color: fontColor,
+                              fontSize: 15,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -173,8 +174,8 @@ class _InfoTilesWidgetState extends State<InfoTilesWidget> {
                         Text(
                           'Population',
                           style: TextStyle(
-                              color: fontColor,
-                              fontSize: 15
+                            color: fontColor,
+                            fontSize: 15,
                           ),
                         ),
                         Icon(
@@ -183,10 +184,10 @@ class _InfoTilesWidgetState extends State<InfoTilesWidget> {
                           size: 50,
                         ),
                         Text(
-                          '${widget.city!.population!}',
+                          '${widget.city.population!}',
                           style: TextStyle(
-                              color: fontColor,
-                              fontSize: 15
+                            color: fontColor,
+                            fontSize: 15,
                           ),
                         )
                       ],
@@ -210,8 +211,8 @@ class _InfoTilesWidgetState extends State<InfoTilesWidget> {
                         Text(
                           'Pressure',
                           style: TextStyle(
-                              color: fontColor,
-                              fontSize: 15
+                            color: fontColor,
+                            fontSize: 15,
                           ),
                         ),
                         Icon(
@@ -220,10 +221,10 @@ class _InfoTilesWidgetState extends State<InfoTilesWidget> {
                           size: 65,
                         ),
                         Text(
-                          '${widget.city!.pressure!}',
+                          '${widget.city.pressure!}',
                           style: TextStyle(
-                              color: fontColor,
-                              fontSize: 15
+                            color: fontColor,
+                            fontSize: 15,
                           ),
                         )
                       ],

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_ios_clone/HomePage/homePage.dart';
+import 'package:weather_ios_clone/HomePage/HomePage.dart';
 
 import '../City.dart';
 
@@ -24,26 +24,25 @@ class _SunInfoWidgetState extends State<SunInfoWidget> {
           child: Column(
             children: [
               Text(
-                  'Sunrise: ${widget.city!.sunrise!}',
-                  style: TextStyle(
-                      color: fontColor
-                  )
+                'Sunrise: ${widget.city!.sunrise!}',
+                style: TextStyle(
+                  color: fontColor,
+                ),
               ),
               Text(
-                  'Sunset: ${widget.city!.sunset!}',
-                  style: TextStyle(
-                      color: fontColor
-                  )
+                'Sunset: ${widget.city!.sunset!}',
+                style: TextStyle(
+                  color: fontColor,
+                ),
               ),
               Text(
-                  'Day length: ${widget.city!.dayLength!}',
-                  style: TextStyle(
-                      color: fontColor
-                  )
+                'Day length: ${widget.city!.dayLength!}',
+                style: TextStyle(
+                  color: fontColor,
+                ),
               )
             ],
-          )
-      ),
+          )),
     );
   }
 }

@@ -26,18 +26,22 @@ void checkTheme() {
   theme
       ? backgroundColor = Color(0xFF4A4A58)
       : backgroundColor = Color(0xFFD5D5E0);
-  theme
-      ? fontColor = Color(0xFFFFFFFF)
-      : fontColor = Color(0xFF0B3E58);
-  theme
-      ? buttonColor = Color(0xFFD5D5E0)
-      : buttonColor = Color(0xFF4A4A58);
+
+  theme ? fontColor = Color(0xFFFFFFFF) : fontColor = Color(0xFF0B3E58);
+
+  theme ? buttonColor = Color(0xFFD5D5E0) : buttonColor = Color(0xFF4A4A58);
+
   theme = !theme;
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
+
+  MyHomePage({
+    required this.title,
+    Key? key,
+  }) : super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }

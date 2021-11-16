@@ -19,10 +19,10 @@ class _CitiesToDisplayState extends State<CitiesToDisplay> {
           height: MediaQuery.of(context).size.height - 88,
           child: Center(
             child: PageView.builder(
-                itemCount: cities.length,
-                itemBuilder: (context, index) => Container(
-                    child: GetCityWidget(city: cities[index])
-                )
+              itemCount: cities.length,
+              itemBuilder: (context, index) => Container(
+                child: GetCityWidget(city: cities[index]),
+              ),
             ),
           ),
         ),

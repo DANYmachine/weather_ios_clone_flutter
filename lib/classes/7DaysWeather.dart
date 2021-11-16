@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_ios_clone/HomePage/homePage.dart';
+import 'package:weather_ios_clone/HomePage/HomePage.dart';
 
-class WeeklyWeather{
+class WeeklyWeather {
   String? image;
   double? temp;
   String? date;
   var widget;
 
-  WeeklyWeather(String image, double temp, String date){
+  WeeklyWeather(String image, double temp, String date) {
     this.image = image;
     this.temp = temp;
     this.date = date;
@@ -19,9 +19,17 @@ class WeeklyWeather{
         color: Colors.lightBlueAccent.withOpacity(0.4),
         borderRadius: BorderRadius.circular(15),
         child: ListTile(
-          leading: Image.network('http://openweathermap.org/img/wn/$image@2x.png',),
-          trailing: Text('${temp!.round()??0} \u00B0C', style: TextStyle(color: fontColor),),
-          title: Text(date, style: TextStyle(color: fontColor),),
+          leading: Image.network(
+            'http://openweathermap.org/img/wn/$image@2x.png',
+          ),
+          trailing: Text(
+            '${temp.round() ?? 0} \u00B0C',
+            style: TextStyle(color: fontColor),
+          ),
+          title: Text(
+            date,
+            style: TextStyle(color: fontColor),
+          ),
         ),
       ),
     );

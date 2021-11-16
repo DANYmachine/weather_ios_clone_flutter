@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_ios_clone/HomePage/homePage.dart';
+import 'package:weather_ios_clone/HomePage/HomePage.dart';
 
 import '../main.dart';
 
@@ -25,7 +25,10 @@ class _DetailPageState extends State<DetailPage> {
                 backgroundColor: Colors.lightBlueAccent,
                 title: Text(
                   'Cities',
-                  style: TextStyle(color: fontColor, fontSize: 25),
+                  style: TextStyle(
+                    color: fontColor,
+                    fontSize: 25,
+                  ),
                 ),
               ),
               backgroundColor: Colors.lightBlueAccent.withOpacity(0.4),
@@ -43,9 +46,16 @@ class _DetailPageState extends State<DetailPage> {
                           color: Colors.lightBlueAccent,
                           child: ListTile(
                             title: Center(
-                              child: Text('${cities[index].city}')),
-                              leading: Image.network('${cities[index].iconUri}'),
-                              trailing: Text('${cities[index].curTemp} \u00b0C'),
+                              child: Text(
+                                '${cities[index].city}',
+                              ),
+                            ),
+                            leading: Image.network(
+                              '${cities[index].iconUri}',
+                            ),
+                            trailing: Text(
+                              '${cities[index].curTemp} \u00b0C',
+                            ),
                           ),
                         ),
                       ),
@@ -59,11 +69,14 @@ class _DetailPageState extends State<DetailPage> {
                   },
                 ),
               ),
-            )
-          )
+            ),
+          ),
         );
       },
-      child: Icon(CupertinoIcons.circle_grid_3x3_fill, color: fontColor),
+      child: Icon(
+        CupertinoIcons.circle_grid_3x3_fill,
+        color: fontColor,
+      ),
     );
   }
 }

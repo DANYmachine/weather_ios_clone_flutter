@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
-import 'package:weather_ios_clone/HomePage/homePage.dart';
+import 'package:weather_ios_clone/HomePage/HomePage.dart';
 
 import '../City.dart';
 
 class MainInfoWidget extends StatefulWidget {
-  final City? city;
-  const MainInfoWidget({Key? key, this.city}) : super(key: key);
+  final City city;
+  const MainInfoWidget({
+    Key? key,
+    required this.city,
+  }) : super(key: key);
 
   @override
   _MainInfoWidgetState createState() => _MainInfoWidgetState();
@@ -25,8 +28,8 @@ class _MainInfoWidgetState extends State<MainInfoWidget> {
             Text(
               '${widget.city!.city}',
               style: TextStyle(
-                  fontSize: 35,
-                  color: fontColor
+                fontSize: 35,
+                color: fontColor,
               ),
             ),
             SizedBox(
@@ -35,8 +38,8 @@ class _MainInfoWidgetState extends State<MainInfoWidget> {
             Text(
               '${widget.city!.country!}',
               style: TextStyle(
-                  fontSize: 20,
-                  color: fontColor
+                fontSize: 20,
+                color: fontColor,
               ),
             ),
           ],
@@ -44,19 +47,17 @@ class _MainInfoWidgetState extends State<MainInfoWidget> {
         Text(
           '${widget.city!.curTemp!.round() ?? 0} \u00B0C',
           style: TextStyle(
-              fontSize: 22,
-              color: fontColor
+            fontSize: 22,
+            color: fontColor,
           ),
         ),
         Text(
-          'Feels like ${widget.city!.feelsLike!.round() ?? 0} \u00b0C',
+          'Feels like ${widget.city.feelsLike!.round() ?? 0} \u00b0C',
           style: TextStyle(
-              color: fontColor
+            color: fontColor,
           ),
         ),
-        Image.network(
-            '${widget.city!.list[0]!.icon}'
-        ),
+        Image.network('${widget.city!.list[0]!.icon}'),
         Text(
           '${widget.city!.currently!}',
           style: TextStyle(color: fontColor),

@@ -17,43 +17,43 @@ class _AddButtonState extends State<AddButton> {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
-        child: Icon(
-          CupertinoIcons.add,
-          color: Colors.white,
-        ),
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text('Add new city'),
-                  content: TextField(
-                    onChanged: (String value) {
-                      setState(() {
-                        _newCity = value;
-                      });
-                    },
+      child: Icon(
+        CupertinoIcons.add,
+        color: Colors.white,
+      ),
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Add new city'),
+              content: TextField(
+                onChanged: (String value) {
+                  setState(() {
+                    _newCity = value;
+                  });
+                },
+              ),
+              actions: [
+                CupertinoButton(
+                  child: Icon(
+                    CupertinoIcons.add_circled,
                   ),
-                  actions: [
-                    CupertinoButton(
-                        child: Icon(
-                            CupertinoIcons.add_circled
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            cities.add(new City('$_newCity'));
-                          });
-                          for (City city in cities) {
-                            city.getWeather();
-                          }
-                          Navigator.of(context).pop();
-                        }
-                    )
-                  ],
-                );
-              }
-          );
-        }
+                  onPressed: () {
+                    setState(() {
+                      cities.add(new City('$_newCity'));
+                    });
+                    for (City city in cities) {
+                      city.getWeather();
+                    }
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          },
+        );
+      },
     );
   }
 }

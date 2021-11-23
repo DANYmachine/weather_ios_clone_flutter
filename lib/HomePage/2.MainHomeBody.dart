@@ -1,13 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_ios_clone/DetailPage/detailPage.dart';
-import 'package:weather_ios_clone/HomePage/HomePage.dart';
-import 'package:weather_ios_clone/classes/GeoLocation.dart';
-import 'AddButton.dart';
-import 'CitiesToDisplay.dart';
-import 'RefreshButton.dart';
-
-GeoLocation? geo;
+import 'package:weather_ios_clone/HomePage/1.HomePage.dart';
+import '3.AddButton.dart';
+import '5.CitiesToDisplay.dart';
+import '4.RefreshButton.dart';
 
 class MainHomeBody extends StatefulWidget {
   const MainHomeBody({Key? key}) : super(key: key);
@@ -47,14 +44,7 @@ class _MainHomeBodyState extends State<MainHomeBody> {
                             color: buttonColor,
                           ),
                           onPressed: () async {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Text('${geo}'),
-                                );
-                              },
-                            );
+
                             //cities.add(geo.getGeoLocWeather());
                           },
                         ),

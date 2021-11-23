@@ -7,15 +7,13 @@ import 'package:weather_ios_clone/classes/City/6.TilesInfo.dart';
 
 import '../City.dart';
 
-class MainListView extends StatefulWidget {
+class MainListView extends StatelessWidget {
   final City city;
-  const MainListView({Key? key, required this.city}) : super(key: key);
+  const MainListView({
+    required this.city,
+    Key? key,
+  }) : super(key: key);
 
-  @override
-  _MainListViewState createState() => _MainListViewState();
-}
-
-class _MainListViewState extends State<MainListView> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -25,34 +23,34 @@ class _MainListViewState extends State<MainListView> {
           child: Column(
             children: [
               MainInfoWidget(
-                city: widget.city,
+                city: city,
               ),
               HourlyWidget(
-                city: widget.city,
+                city: city,
               ),
               SizedBox(
                 height: 10,
               ),
               SunInfoWidget(
-                city: widget.city,
+                city: city,
               ),
               SizedBox(
                 height: 10,
               ),
               Column(
                 children: [
-                  widget.city!.tileList[0],
-                  widget.city!.tileList[1],
-                  widget.city!.tileList[2],
-                  widget.city!.tileList[3],
-                  widget.city!.tileList[4],
-                  widget.city!.tileList[5],
-                  widget.city!.tileList[6],
+                  city.tileList[0],
+                  city.tileList[1],
+                  city.tileList[2],
+                  city.tileList[3],
+                  city.tileList[4],
+                  city.tileList[5],
+                  city.tileList[6],
                   SizedBox(
                     height: 20,
                   ),
                   InfoTilesWidget(
-                    city: widget.city,
+                    city: city,
                   ),
                 ],
               ),

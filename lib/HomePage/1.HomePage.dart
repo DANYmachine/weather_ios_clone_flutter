@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:weather_ios_clone/HomePage/MainHomeBody.dart';
+import 'package:weather_ios_clone/Blocs/HomePageBloc/cities_bloc.dart';
+import 'package:weather_ios_clone/HomePage/2.MainHomeBody.dart';
 import 'package:weather_ios_clone/classes/City.dart';
 import '../main.dart';
 
@@ -51,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     checkTheme();
+    initFireBase();
     setState(() {
       for (City city in cities) {
         city.getWeather();

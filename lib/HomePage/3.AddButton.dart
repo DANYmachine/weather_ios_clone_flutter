@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_ios_clone/HomePage/1.HomePage.dart';
 import 'package:weather_ios_clone/classes/City.dart';
 
 import '../main.dart';
@@ -40,9 +43,11 @@ class _AddButtonState extends State<AddButton> {
                     CupertinoIcons.add_circled,
                   ),
                   onPressed: () {
-                    setState(() {
-                      cities.add(new City('$_newCity'));
-                    });
+                    cities.add(new City('$_newCity'));
+                    citiesBloc.citiesSink.add(cities);
+                    initFireBase();
+                    FirebaseFirestore.instance.collection('items').add({'city': _newCity});
+
                     for (City city in cities) {
                       city.getWeather();
                     }

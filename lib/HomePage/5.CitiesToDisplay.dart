@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:weather_ios_clone/Blocs/bloc_events.dart';
+import 'package:weather_ios_clone/HomePage/1.HomePage.dart';
 import 'package:weather_ios_clone/classes/City/1.CityWidget.dart';
+import 'package:weather_ios_clone/Blocs/HomePageBloc/cities_bloc.dart';
 
 import '../main.dart';
 
@@ -18,12 +21,17 @@ class _CitiesToDisplayState extends State<CitiesToDisplay> {
         Container(
           height: MediaQuery.of(context).size.height - 88,
           child: Center(
-            child: PageView.builder(
-              itemCount: cities.length,
-              itemBuilder: (context, index) => Container(
-                child: GetCityWidget(city: cities[index]),
-              ),
-            ),
+            child: StreamBuilder(
+              builder: (context, snapshot) {
+                return PageView.builder(
+                  itemCount: cities.length,
+                  itemBuilder: (context, index) => Container(
+                    child: GetCityWidget(city: cities[index]),
+                  ),
+                );
+              },
+              stream: citiesBloc.citiesStream,
+            )
           ),
         ),
       ],

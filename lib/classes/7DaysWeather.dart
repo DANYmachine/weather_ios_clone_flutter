@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_ios_clone/HomePage/HomePage.dart';
+import 'package:weather_ios_clone/HomePage/1.HomePage.dart';
 
 class WeeklyWeather {
   String? image;

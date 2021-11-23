@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_ios_clone/HomePage/HomePage.dart';
-
+import 'package:weather_ios_clone/HomePage/1.HomePage.dart';
 import '../City.dart';
 
 class HourlyWidget extends StatefulWidget {
-  final City? city;
-  const HourlyWidget({Key? key, this.city}) : super(key: key);
+  final City city;
+  const HourlyWidget({
+    required this.city,
+    Key? key,
+  }) : super(key: key);
 
   @override
   _HourlyWidgetState createState() => _HourlyWidgetState();
@@ -20,11 +22,7 @@ class _HourlyWidgetState extends State<HourlyWidget> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 36,
-        itemBuilder: (
-          cont,
-          ind,
-        ) =>
-            Container(
+        itemBuilder: (cont, ind) => Container(
           padding: EdgeInsets.only(
             right: 5,
             left: 5,

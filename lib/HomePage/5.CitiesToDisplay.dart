@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:weather_ios_clone/Blocs/bloc_events.dart';
-import 'package:weather_ios_clone/HomePage/1.HomePage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_ios_clone/classes/City/1.CityWidget.dart';
-import 'package:weather_ios_clone/Blocs/HomePageBloc/cities_bloc.dart';
-
+import 'package:weather_ios_clone/classes/City/City_BLoC/CityBloc.dart';
+import 'package:weather_ios_clone/classes/City/City_BLoC/CityState.dart';
 import '../main.dart';
 
 class CitiesToDisplay extends StatefulWidget {
@@ -16,25 +15,26 @@ class CitiesToDisplay extends StatefulWidget {
 class _CitiesToDisplayState extends State<CitiesToDisplay> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: MediaQuery.of(context).size.height - 88,
-          child: Center(
-            child: StreamBuilder(
-              builder: (context, snapshot) {
-                return PageView.builder(
-                  itemCount: cities.length,
+
+    return BlocBuilder<CityBloc, CityState>(
+      builder: (BuildContext context, state) {
+        bloc = BlocProvider.of<CityBloc>(context);
+        return Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height - 88,
+              child: Center(
+                child: PageView.builder(
+                  itemCount: bloc.cities.length,
                   itemBuilder: (context, index) => Container(
-                    child: GetCityWidget(city: cities[index]),
+                    child: GetCityWidget(city: bloc.cities[index]),
                   ),
-                );
-              },
-              stream: citiesBloc.citiesStream,
-            )
-          ),
-        ),
-      ],
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

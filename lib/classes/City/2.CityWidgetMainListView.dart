@@ -22,21 +22,11 @@ class MainListView extends StatelessWidget {
           padding: EdgeInsets.all(15),
           child: Column(
             children: [
-              MainInfoWidget(
-                city: city,
-              ),
-              HourlyWidget(
-                city: city,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              SunInfoWidget(
-                city: city,
-              ),
-              SizedBox(
-                height: 10,
-              ),
+              MainInfoWidget(city: city),
+              HourlyWidget(city: city),
+              SizedBox(height: 10),
+              SunInfoWidget(city: city),
+              SizedBox(height: 10),
               Column(
                 children: [
                   city.tileList[0],
@@ -46,12 +36,8 @@ class MainListView extends StatelessWidget {
                   city.tileList[4],
                   city.tileList[5],
                   city.tileList[6],
-                  SizedBox(
-                    height: 20,
-                  ),
-                  InfoTilesWidget(
-                    city: city,
-                  ),
+                  SizedBox(height: 20),
+                  InfoTilesWidget(city: city),
                 ],
               ),
             ],

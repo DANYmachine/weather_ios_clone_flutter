@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_ios_clone/HomePage/1.HomePage.dart';
-
+import 'package:weather_ios_clone/classes/City/City_BLoC/CityBloc.dart';
+import 'package:weather_ios_clone/classes/City/City_BLoC/CityEvent.dart';
 import '../main.dart';
 
 class DetailPage extends StatefulWidget {
@@ -35,10 +37,10 @@ class _DetailPageState extends State<DetailPage> {
               body: Container(
                 padding: EdgeInsets.only(top: 15),
                 child: ListView.builder(
-                  itemCount: cities.length,
+                  itemCount: bloc.cities.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Dismissible(
-                      key: Key(cities[index].city),
+                      key: Key(bloc.cities[index].city),
                       child: Container(
                         padding: EdgeInsets.all(5),
                         child: Material(
@@ -47,23 +49,22 @@ class _DetailPageState extends State<DetailPage> {
                           child: ListTile(
                             title: Center(
                               child: Text(
-                                '${cities[index].city}',
+                                '${bloc.cities[index].city}',
                               ),
                             ),
                             leading: Image.network(
-                              '${cities[index].iconUri}',
+                              '${bloc.cities[index].iconUri}',
                             ),
                             trailing: Text(
-                              '${cities[index].curTemp} \u00b0C',
+                              '${bloc.cities[index].curTemp} \u00b0C',
                             ),
                           ),
                         ),
                       ),
                       onDismissed: (direction) {
-                        setState(() {
-                          cities.removeAt(index);
-                          Update();
-                        });
+                        CityEvent event = CityDeleteEvent();
+                        event.city = bloc.cities[index].city;
+                        bloc.add(event);
                       },
                     );
                   },

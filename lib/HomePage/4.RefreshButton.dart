@@ -21,7 +21,7 @@ class _RefreshButtonState extends State<RefreshButton> {
       ),
       onPressed: () {
         setState(() {
-          for (City ct in cities) {
+          for (City ct in bloc.cities) {
             ct.getWeather();
             ct.alternative();
             ct.dailyWeather();

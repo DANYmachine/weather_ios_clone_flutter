@@ -1,11 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_ios_clone/HomePage/1.HomePage.dart';
-import 'package:weather_ios_clone/classes/City.dart';
-
-import '../main.dart';
+import '4.AddButtonWidget.dart';
 
 var _newCity;
 
@@ -28,34 +23,7 @@ class _AddButtonState extends State<AddButton> {
         showDialog(
           context: context,
           builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Add new city'),
-              content: TextField(
-                onChanged: (String value) {
-                  setState(() {
-                    _newCity = value;
-                  });
-                },
-              ),
-              actions: [
-                CupertinoButton(
-                  child: Icon(
-                    CupertinoIcons.add_circled,
-                  ),
-                  onPressed: () {
-                    cities.add(new City('$_newCity'));
-                    citiesBloc.citiesSink.add(cities);
-                    initFireBase();
-                    FirebaseFirestore.instance.collection('items').add({'city': _newCity});
-
-                    for (City city in cities) {
-                      city.getWeather();
-                    }
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            );
+            return AddButtonWidget();
           },
         );
       },

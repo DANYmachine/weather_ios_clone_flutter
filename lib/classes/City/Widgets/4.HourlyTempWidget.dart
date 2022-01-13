@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_ios_clone/HomePage/1.HomePage.dart';
-import '../City.dart';
+import 'package:weather_ios_clone/classes/Methods/City.dart';
 
 class HourlyWidget extends StatefulWidget {
   final City city;
@@ -36,21 +36,21 @@ class _HourlyWidgetState extends State<HourlyWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '${widget.city!.list[ind].date!}',
+                    '${widget.city.list[ind].date!}',
                     style: TextStyle(
                       fontSize: 18,
                       color: fontColor,
                     ),
                   ),
                   Text(
-                    '${widget.city!.list[ind].temp!} \u00B0C',
+                    '${widget.city.list[ind].temp!} \u00B0C',
                     style: TextStyle(
                       fontSize: 18,
                       color: fontColor,
                     ),
                   ),
                   Image.network(
-                    '${widget.city!.list[ind].icon!}',
+                    '${widget.city.list[ind].icon!}',
                   ),
                 ],
               ),

@@ -2,8 +2,9 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_ios_clone/HomePage/2.MainHomeBody.dart';
-import 'package:weather_ios_clone/classes/City.dart';
+import 'package:weather_ios_clone/classes/City/City_BLoC/1.CityBloc.dart';
 import '../main.dart';
 
 var jCities = [];
@@ -51,12 +52,15 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     checkTheme();
-    initFireBase();
+    //initFireBase();
     //readCitiesJSON();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MainHomeBody();
+    return BlocProvider(
+      create: (context) => CityBloc(),
+      child: MainHomeBody(),
+    );
   }
 }

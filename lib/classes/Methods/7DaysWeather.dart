@@ -23,7 +23,7 @@ class WeeklyWeather {
             'http://openweathermap.org/img/wn/$image@2x.png',
           ),
           trailing: Text(
-            '${temp.round() ?? 0} \u00B0C',
+            '${temp.round()} \u00B0C',
             style: TextStyle(color: fontColor),
           ),
           title: Text(

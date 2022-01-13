@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_ios_clone/classes/City.dart';
+import 'package:weather_ios_clone/classes/Methods/City.dart';
 
 import '../main.dart';
 
@@ -21,7 +21,7 @@ class _RefreshButtonState extends State<RefreshButton> {
       ),
       onPressed: () {
         setState(() {
-          for (City ct in bloc.cities) {
+          for (City ct in repository.cities) {
             ct.getWeather();
             ct.alternative();
             ct.dailyWeather();

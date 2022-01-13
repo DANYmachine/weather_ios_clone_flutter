@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:weather_ios_clone/HomePage/1.HomePage.dart';
-
-import '../City.dart';
+import 'package:weather_ios_clone/classes/Methods/City.dart';
 
 class MainInfoWidget extends StatefulWidget {
   final City city;

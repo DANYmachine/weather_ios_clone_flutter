@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_ios_clone/classes/City/3.MainInfo.dart';
-import 'package:weather_ios_clone/classes/City/4.HourlyTempWidget.dart';
-import 'package:weather_ios_clone/classes/City/5.SunInfo.dart';
-import 'package:weather_ios_clone/classes/City/6.TilesInfo.dart';
-
-import '../City.dart';
+import 'package:weather_ios_clone/classes/Methods/City.dart';
+import '3.MainInfo.dart';
+import '4.HourlyTempWidget.dart';
+import '5.SunInfo.dart';
+import '6.TilesInfo.dart';
 
 class MainListView extends StatelessWidget {
   final City city;

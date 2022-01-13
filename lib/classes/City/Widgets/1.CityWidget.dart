@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../City.dart';
+import 'package:weather_ios_clone/classes/Methods/City.dart';
 import '2.CityWidgetMainListView.dart';
 
 class GetCityWidget extends StatelessWidget {

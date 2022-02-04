@@ -9,4 +9,8 @@ class CityLoadedState extends CityState {
   }
 }
 
+class CityLoadingState extends CityState {}
+
 class CityUninitialisedState extends CityState {}
+
+class CityErrorState extends CityState {}

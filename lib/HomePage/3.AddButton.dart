@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_ios_clone/AddPage/AddPage.dart';
+import 'package:weather_ios_clone/Services/injections_container.dart';
+import 'package:weather_ios_clone/Services/repository.dart';
 import 'package:weather_ios_clone/classes/City/CityAddBloc/1.CityAddBloc.dart';
+import 'package:weather_ios_clone/classes/City/City_BLoC/1.CityBloc.dart';
 import 'package:weather_ios_clone/classes/City/City_BLoC/2.CityEvent.dart';
 import '../main.dart';
 import '4.AddButtonWidget.dart';
@@ -34,19 +37,19 @@ class _AddButtonState extends State<AddButton> {
             ),
           ),
         ).then((result) {
-          bloc.add(
-            CityInitEvent(
-              cities: repository.cities,
-            ),
+          dependency<CityBloc>().add(
+            CityInitEvent(),
           );
-          Scaffold.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                "City $result added!",
-                textAlign: TextAlign.center,
+          if (result != null) {
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  'City $result added!',
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
-          );
+            );
+          }
         });
         ;
       },

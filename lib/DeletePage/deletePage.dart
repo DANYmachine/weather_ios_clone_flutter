@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:weather_ios_clone/HomePage/1.HomePage.dart';
+import 'package:weather_ios_clone/Services/injections_container.dart';
+import 'package:weather_ios_clone/Services/repository.dart';
 import 'package:weather_ios_clone/classes/City/CityDeleteBloc/1.CityDeleteBloc.dart';
 import 'package:weather_ios_clone/classes/City/CityDeleteBloc/2.CityDeleteEvent.dart';
 import 'package:weather_ios_clone/classes/City/CityDeleteBloc/3.CityDeleteState.dart';
@@ -17,10 +20,11 @@ class DeletePage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DeletePage> {
+  late CityBlocDelete _deleteBloc;
   @override
   void didChangeDependencies() {
-    deleteBloc = BlocProvider.of<CityBlocDelete>(context);
-    deleteBloc.add(DeleteInitEvent());
+    _deleteBloc = dependency.get<CityBlocDelete>();
+    _deleteBloc.add(DeleteInitEvent());
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
@@ -38,7 +42,7 @@ class _DetailPageState extends State<DeletePage> {
             child: Scaffold(
               appBar: AppBar(
                 centerTitle: true,
-                backgroundColor: Colors.lightBlueAccent,
+                backgroundColor: Color(0xFF51A3E0),
                 title: Text(
                   'Edit Cities',
                   style: TextStyle(
@@ -49,6 +53,7 @@ class _DetailPageState extends State<DeletePage> {
               ),
               backgroundColor: Colors.lightBlueAccent.withOpacity(0.4),
               body: Container(
+                color: Color(0xFF51A3E0).withAlpha(175),
                 padding: EdgeInsets.only(top: 15),
                 child: ListView.builder(
                   itemCount: state.cities.length,
@@ -59,11 +64,14 @@ class _DetailPageState extends State<DeletePage> {
                         padding: EdgeInsets.all(5),
                         child: Material(
                           borderRadius: BorderRadius.circular(15),
-                          color: Colors.lightBlueAccent,
+                          color: Color(0xFF51A3E0),
                           child: ListTile(
                             title: Center(
                               child: Text(
                                 '${state.cities[index].city}',
+                                style: TextStyle(
+                                  color: fontColor,
+                                ),
                               ),
                             ),
                             leading: Image.network(
@@ -71,6 +79,9 @@ class _DetailPageState extends State<DeletePage> {
                             ),
                             trailing: Text(
                               '${state.cities[index].curTemp} \u00b0C',
+                              style: TextStyle(
+                                color: fontColor,
+                              ),
                             ),
                           ),
                         ),
@@ -84,7 +95,7 @@ class _DetailPageState extends State<DeletePage> {
                             ),
                           ),
                         );
-                        deleteBloc.add(
+                        _deleteBloc.add(
                           DeleteEvent(
                             indexToDelete: index,
                           ),

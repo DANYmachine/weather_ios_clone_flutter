@@ -17,7 +17,7 @@ class GetCityWidget extends StatelessWidget {
       child: Material(
         elevation: 1000,
         borderRadius: BorderRadius.circular(15),
-        color: Colors.lightBlue.withOpacity(0.7),
+        color: Color(0xFF51A3E0).withOpacity(0.9),
         child: MainListView(city: city),
       ),
     );

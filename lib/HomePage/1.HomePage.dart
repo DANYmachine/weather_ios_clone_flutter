@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_ios_clone/HomePage/2.MainHomeBody.dart';
+import 'package:weather_ios_clone/Services/injections_container.dart';
+import 'package:weather_ios_clone/Services/repository.dart';
 import 'package:weather_ios_clone/classes/City/City_BLoC/1.CityBloc.dart';
+import 'package:weather_ios_clone/classes/Theme/ThemeBloc.dart';
 import '../main.dart';
 
 var jCities = [];
@@ -59,8 +62,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CityBloc(),
-      child: MainHomeBody(),
+      create: (context) => CityBloc(
+        citiesRep: dependency.get<CitiesRepository>(),
+      ),
+      child: BlocProvider(
+        create: (context) => ThemeBloc(),
+        child: MainHomeBody(),
+      ),
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_ios_clone/Services/injections_container.dart';
+import 'package:weather_ios_clone/Services/repository.dart';
 import 'package:weather_ios_clone/classes/City/CityAddBloc/1.CityAddBloc.dart';
 import 'package:weather_ios_clone/classes/City/CityAddBloc/2.CityAddEvent.dart';
 import 'package:weather_ios_clone/classes/City/CityAddBloc/3.CityAddState.dart';
@@ -18,10 +20,11 @@ class AddButtonWidget extends StatefulWidget {
 }
 
 class _AddButtonWidgetState extends State<AddButtonWidget> {
+  late CityAddBloc _blocAdd;
   @override
   void didChangeDependencies() {
-    blocAdd = BlocProvider.of<CityAddBloc>(context);
-    blocAdd.add(AddInitEvent());
+    _blocAdd = dependency.get<CityAddBloc>();
+    _blocAdd.add(AddInitEvent());
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
@@ -45,11 +48,7 @@ class _AddButtonWidgetState extends State<AddButtonWidget> {
                   CupertinoIcons.add_circled,
                 ),
                 onPressed: () {
-                  blocAdd.add(AddNewCityEvent(city: city));
-                  bloc.add(CityInitEvent(cities: state.cities));
-                  for (City city in repository.cities) {
-                    city.getWeather();
-                  }
+                  _blocAdd.add(AddNewCityEvent(city: city));
                   Navigator.of(context).pop();
                 },
               ),

@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_ios_clone/Services/injections_container.dart';
+import 'package:weather_ios_clone/Services/repository.dart';
+import 'package:weather_ios_clone/classes/City/City_BLoC/1.CityBloc.dart';
+import 'package:weather_ios_clone/classes/City/City_BLoC/2.CityEvent.dart';
 import 'package:weather_ios_clone/classes/Methods/City.dart';
 
 import '../main.dart';
@@ -12,22 +16,19 @@ class RefreshButton extends StatefulWidget {
 }
 
 class _RefreshButtonState extends State<RefreshButton> {
+  late CityBloc _cityBloc;
   @override
   Widget build(BuildContext context) {
-    return CupertinoButton(
+    return GestureDetector(
       child: Icon(
         CupertinoIcons.refresh,
         color: Colors.white,
       ),
-      onPressed: () {
-        setState(() {
-          for (City ct in repository.cities) {
-            ct.getWeather();
-            ct.alternative();
-            ct.dailyWeather();
-          }
-          //readCitiesJSON();
-        });
+      onTap: () {
+        _cityBloc.add(CityUpdateEvent());
+      },
+      onLongPress: () {
+        _cityBloc.add(CityUpdateEvent());
       },
     );
   }

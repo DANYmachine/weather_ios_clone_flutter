@@ -1,13 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_ios_clone/DeletePage/deletePage.dart';
 import 'package:weather_ios_clone/HomePage/1.HomePage.dart';
-import 'package:weather_ios_clone/classes/City/CityAddBloc/1.CityAddBloc.dart';
+import 'package:weather_ios_clone/Services/injections_container.dart';
+import 'package:weather_ios_clone/Services/repository.dart';
 import 'package:weather_ios_clone/classes/City/CityDeleteBloc/1.CityDeleteBloc.dart';
-import 'package:weather_ios_clone/classes/City/CityDeleteBloc/3.CityDeleteState.dart';
 import 'package:weather_ios_clone/classes/City/City_BLoC/1.CityBloc.dart';
 import 'package:weather_ios_clone/classes/City/City_BLoC/2.CityEvent.dart';
+import 'package:weather_ios_clone/classes/Theme/ThemeBloc.dart';
+import 'package:weather_ios_clone/classes/Theme/ThemeEvent.dart';
+import 'package:weather_ios_clone/classes/Theme/ThemeState.dart';
 import '../main.dart';
 import '3.AddButton.dart';
 import '5.CitiesToDisplay.dart';
@@ -21,10 +26,17 @@ class MainHomeBody extends StatefulWidget {
 }
 
 class _MainHomeBodyState extends State<MainHomeBody> {
+  late CityBloc _cityBloc;
+  @override
+  void didChangeDependencies() {
+    _cityBloc = dependency.get<CityBloc>();
+    //sl<CitiesRepository>().themeBloc.add(ToLightThemeEvent());
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
-    //bloc = BlocProvider.of<CityBloc>(context);
-    //bloc.add(CityInitEvent());
     return Scaffold(
       backgroundColor: Colors.blue,
       body: SingleChildScrollView(
@@ -50,13 +62,13 @@ class _MainHomeBodyState extends State<MainHomeBody> {
                                 child: DeletePage(),
                               ),
                             ),
-                          ).then((result) {
-                            bloc.add(
-                              CityInitEvent(
-                                cities: repository.cities,
-                              ),
-                            );
-                          });
+                          ).then(
+                            (result) {
+                              _cityBloc.add(
+                                CityInitEvent(),
+                              );
+                            },
+                          );
                         },
                         child: Icon(
                           CupertinoIcons.circle_grid_3x3_fill,
@@ -83,7 +95,9 @@ class _MainHomeBodyState extends State<MainHomeBody> {
                   ],
                 ),
               ),
-              CitiesToDisplay(),
+              CitiesToDisplay(
+                cityBloc: _cityBloc,
+              ),
             ],
           ),
         ),
